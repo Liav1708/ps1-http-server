@@ -1,0 +1,21 @@
+{
+  "name": "pulse-http-server",
+  "version": "1.0.0",
+  "description": "A lightweight, robust, and highly creative HTTP/1.1 server framework built from scratch using Node.js net module.",
+  "main": "app.js",
+  "scripts": {
+    "start": "node app.js",
+    "dev": "node app.js"
+  },
+  "keywords": [
+    "http",
+    "server",
+    "net",
+    "framework",
+    "router",
+    "static",
+    "templates"
+  ],
+  "author": "Liav Sarfati",
+  "license": "MIT"
+}

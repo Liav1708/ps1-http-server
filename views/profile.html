@@ -1,0 +1,246 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Pulse Profile - {{username}}</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;800&family=Space+Mono&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg-gradient: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+      --accent-color: #6366f1;
+      --accent-glow: rgba(99, 102, 241, 0.15);
+      --glass-bg: rgba(255, 255, 255, 0.75);
+      --glass-border: rgba(255, 255, 255, 0.6);
+      --text-main: #1f2937;
+      --text-muted: #6b7280;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: 'Outfit', sans-serif;
+      background: var(--bg-gradient);
+      color: var(--text-main);
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding: 40px 20px;
+    }
+
+    .container {
+      width: 100%;
+      max-width: 600px;
+      margin-top: 40px;
+    }
+
+    .banner-alert {
+      background: linear-gradient(90deg, rgba(99, 102, 241, 0.1) 0%, rgba(139, 92, 246, 0.1) 100%);
+      border: 1px solid rgba(99, 102, 241, 0.2);
+      border-radius: 16px;
+      padding: 16px 24px;
+      margin-bottom: 24px;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      animation: fadeInDown 0.6s ease;
+    }
+
+    .banner-icon {
+      font-size: 1.5rem;
+    }
+
+    .banner-text {
+      font-size: 0.95rem;
+      color: #374151;
+      font-weight: 500;
+    }
+
+    .profile-card {
+      background: var(--glass-bg);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      border: 1px solid var(--glass-border);
+      border-radius: 24px;
+      padding: 40px;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05), 
+                  inset 0 1px 0 rgba(255, 255, 255, 0.8);
+      position: relative;
+    }
+
+    .profile-card::before {
+      content: '';
+      position: absolute;
+      width: 100px;
+      height: 100px;
+      background: var(--accent-glow);
+      filter: blur(40px);
+      top: -20px;
+      right: -20px;
+      border-radius: 50%;
+      z-index: -1;
+    }
+
+    .avatar-wrapper {
+      display: flex;
+      align-items: center;
+      gap: 24px;
+      margin-bottom: 32px;
+    }
+
+    .avatar {
+      width: 80px;
+      height: 80px;
+      background: linear-gradient(135deg, var(--accent-color), #8b5cf6);
+      border-radius: 50%;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      font-size: 2.2rem;
+      font-weight: 800;
+      color: white;
+      box-shadow: 0 4px 20px rgba(99, 102, 241, 0.3);
+    }
+
+    .username {
+      font-size: 1.8rem;
+      font-weight: 800;
+      letter-spacing: -0.5px;
+      color: var(--text-main);
+    }
+
+    .role-tag {
+      display: inline-block;
+      background: rgba(99, 102, 241, 0.08);
+      border: 1px solid rgba(99, 102, 241, 0.2);
+      color: #4f46e5;
+      font-size: 0.8rem;
+      font-weight: 600;
+      padding: 2px 10px;
+      border-radius: 99px;
+      margin-top: 6px;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+    }
+
+    .bio {
+      font-size: 1.05rem;
+      line-height: 1.6;
+      color: var(--text-muted);
+      margin-bottom: 32px;
+      border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+      padding-bottom: 24px;
+    }
+
+    .section-title {
+      font-size: 1.1rem;
+      font-weight: 600;
+      letter-spacing: 0.5px;
+      text-transform: uppercase;
+      color: var(--accent-color);
+      margin-bottom: 16px;
+    }
+
+    .skills-grid {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+    }
+
+    .skill-tag {
+      background: rgba(255, 255, 255, 0.5);
+      border: 1px solid rgba(0, 0, 0, 0.06);
+      padding: 8px 16px;
+      border-radius: 12px;
+      font-size: 0.9rem;
+      color: #374151;
+      transition: all 0.2s ease;
+      cursor: pointer;
+    }
+
+    .skill-tag:hover {
+      background: rgba(99, 102, 241, 0.05);
+      border-color: rgba(99, 102, 241, 0.3);
+      transform: translateY(-1px);
+    }
+
+    .footer {
+      text-align: center;
+      margin-top: 40px;
+      font-size: 0.85rem;
+      color: var(--text-muted);
+    }
+
+    .footer a {
+      color: var(--accent-color);
+      text-decoration: none;
+      font-weight: 600;
+    }
+
+    .footer a:hover {
+      text-decoration: underline;
+    }
+
+    @keyframes fadeInDown {
+      from {
+        opacity: 0;
+        transform: translateY(-15px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <div class="container">
+    
+    <!-- Demonstration of dynamic conditional templating -->
+    {{#if showBanner}}
+    <div class="banner-alert">
+      <span class="banner-icon">✨</span>
+      <span class="banner-text">{{bannerMessage}}</span>
+    </div>
+    {{/if}}
+
+    <div class="profile-card">
+      <div class="avatar-wrapper">
+        <div class="avatar">
+          {{initial}}
+        </div>
+        <div>
+          <h1 class="username">{{username}}</h1>
+          <span class="role-tag">{{role}}</span>
+        </div>
+      </div>
+
+      <p class="bio">
+        {{bio}}
+      </p>
+
+      <h2 class="section-title">Enrolled Courses & Skills</h2>
+      <div class="skills-grid">
+        <!-- Demonstration of dynamic array looping -->
+        {{#each skills}}
+        <div class="skill-tag">🛡️ {{this}}</div>
+        {{/each}}
+      </div>
+    </div>
+
+    <div class="footer">
+      <p>Rendered dynamically by <strong>Pulse Template Engine</strong></p>
+      <p style="margin-top: 8px;"><a href="/">← Return to Dashboard</a></p>
+    </div>
+  </div>
+
+</body>
+</html>

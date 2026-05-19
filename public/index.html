@@ -1,14 +1,17 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Pulse Server Framework - Dashboard</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;800&family=Space+Mono&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;800&family=Space+Mono&display=swap"
+    rel="stylesheet">
   <link rel="stylesheet" href="styles.css">
 </head>
+
 <body>
 
   <div class="dashboard">
@@ -26,33 +29,45 @@
       <!-- Left Column: Core Description & Architecture -->
       <div class="card">
         <h2>
-          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="8" rx="2" ry="2"></rect><rect x="2" y="14" width="20" height="8" rx="2" ry="2"></rect><line x1="6" y1="6" x2="6.01" y2="6"></line><line x1="6" y1="18" x2="6.01" y2="18"></line></svg>
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"
+            stroke-linecap="round" stroke-linejoin="round">
+            <rect x="2" y="2" width="20" height="8" rx="2" ry="2"></rect>
+            <rect x="2" y="14" width="20" height="8" rx="2" ry="2"></rect>
+            <line x1="6" y1="6" x2="6.01" y2="6"></line>
+            <line x1="6" y1="18" x2="6.01" y2="18"></line>
+          </svg>
           Under The Hood
         </h2>
-        <p>Pulse uses Node's low-level <code>net.Socket</code> duplex streams to read, buffer, parse, and respond to incoming raw HTTP/1.1 TCP data streams. By checking Content-Length limits dynamically, Pulse fully mitigates packet fragmentation bugs common in raw TCP servers.</p>
-        
+        <p>Pulse uses Node's low-level <code>net.Socket</code> duplex streams to read, buffer, parse, and respond to
+          incoming raw HTTP/1.1 TCP data streams. By checking Content-Length limits dynamically, Pulse fully mitigates
+          packet fragmentation bugs common in raw TCP servers.</p>
+
         <h3 style="font-size: 1.05rem; margin: 24px 0 12px 0;">Framework Capabilities:</h3>
         <ul class="features-list">
-          <li><strong>TCP Socket Accumulator</strong> - Intelligently buffers chunked HTTP requests, parsing headers and waiting for complete body payload delivery.</li>
-          <li><strong>Regex Route Router</strong> - Full routing support with params matching (e.g. <code>/api/users/:id</code>) and HTTP verbs.</li>
-          <li><strong>Express-Style Middleware Piping</strong> - Executes serial middleware chains with full <code>(req, res, next)</code> signature control.</li>
-          <li><strong>Pulse Template Engine</strong> - Custom templating engine supporting list loops (<code>#each</code>), conditionals (<code>#if</code>), and value bindings.</li>
+          <li><strong>TCP Socket Accumulator</strong> - Intelligently buffers chunked HTTP requests, parsing headers and
+            waiting for complete body payload delivery.</li>
+          <li><strong>Regex Route Router</strong> - Full routing support with params matching (e.g.
+            <code>/api/users/:id</code>) and HTTP verbs.</li>
+          <li><strong>Express-Style Middleware Piping</strong> - Executes serial middleware chains with full
+            <code>(req, res, next)</code> signature control.</li>
+          <li><strong>Pulse Template Engine</strong> - Custom templating engine supporting list loops
+            (<code>#each</code>), conditionals (<code>#if</code>), and value bindings.</li>
           <li><strong>Declarative Validator</strong> - Built-in type coercion and validation middleware.</li>
         </ul>
 
         <div style="margin-top: 32px;">
           <h3 style="font-size: 1rem; margin-bottom: 8px;">Run Client-Side Action Controls:</h3>
           <div style="display: flex; flex-wrap: wrap; gap: 12px;">
-            <a href="/profile?username=OhadAssulin&role=professor" class="btn" style="text-decoration: none;">
+            <a href="/profile?username=LiavSarfati&role=student" target="_blank" class="btn" style="text-decoration: none;">
               🎭 Try Template View
             </a>
-            <a href="/api/users/99" class="btn btn-secondary" style="text-decoration: none;" id="btn-fetch-user">
+            <a href="/api/users/99" target="_blank" class="btn btn-secondary" style="text-decoration: none;" id="btn-fetch-user">
               🔍 Test Route Params
             </a>
-            <a href="/trigger-error" class="btn btn-danger" style="text-decoration: none;">
+            <a href="/trigger-error" target="_blank" class="btn btn-danger" style="text-decoration: none;">
               💥 Trigger 500 Page
             </a>
-            <a href="/not-a-valid-path" class="btn btn-secondary" style="text-decoration: none;">
+            <a href="/not-a-valid-path" target="_blank" class="btn btn-secondary" style="text-decoration: none;">
               ❓ Test 404 Page
             </a>
           </div>
@@ -62,25 +77,29 @@
       <!-- Right Column: Interactive API Tester -->
       <div class="card" id="api-playground">
         <h2>
-          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polygon points="5 3 19 12 5 21 5 3"></polygon></svg>
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"
+            stroke-linecap="round" stroke-linejoin="round">
+            <polygon points="5 3 19 12 5 21 5 3"></polygon>
+          </svg>
           API Playground
         </h2>
-        <p>Submit JSON payloads below. Our server will apply validation middleware before proceeding to the route handler.</p>
+        <p>Submit JSON payloads below. Our server will apply validation middleware before proceeding to the route
+          handler.</p>
 
         <form id="api-form">
           <div class="form-group">
             <label for="input-username">Username</label>
-            <input type="text" id="input-username" placeholder="e.g., Ohad_Assulin" required>
+            <input type="text" id="input-username" placeholder="Liav_Sarfati" required>
           </div>
 
           <div class="form-group">
             <label for="input-email">Email Address</label>
-            <input type="email" id="input-email" placeholder="e.g., ohad@runi.ac.il" required>
+            <input type="email" id="input-email" placeholder="liav.sarfati@post.runi.ac.il" required>
           </div>
 
           <div class="form-group">
             <label for="input-age">Age (Validated Number)</label>
-            <input type="text" id="input-age" placeholder="e.g., 28" required>
+            <input type="text" id="input-age" placeholder="22" required>
           </div>
 
           <button type="submit" id="submit-btn" style="width: 100%;">
@@ -106,4 +125,5 @@
 
   <script src="app.js"></script>
 </body>
+
 </html>

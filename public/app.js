@@ -3,7 +3,6 @@ document.addEventListener('DOMContentLoaded', () => {
   const submitBtn = document.getElementById('submit-btn');
   const responseBox = document.getElementById('response-box');
   const responseStatus = document.getElementById('response-status');
-  const btnFetchUser = document.getElementById('btn-fetch-user');
 
   // Submit User (POST Handler / validator demo)
   form.addEventListener('submit', async (e) => {
@@ -61,44 +60,6 @@ document.addEventListener('DOMContentLoaded', () => {
     } finally {
       submitBtn.disabled = false;
       submitBtn.textContent = '🚀 Register User (POST)';
-    }
-  });
-
-  // Dynamic Route Params Fetcher
-  btnFetchUser.addEventListener('click', async (e) => {
-    e.preventDefault();
-    responseBox.textContent = 'Fetching dynamic user id data...';
-    responseStatus.style.display = 'none';
-    
-    // Generate a random user ID between 1 and 100
-    const randomId = Math.floor(Math.random() * 100) + 1;
-    const startTime = performance.now();
-
-    try {
-      const response = await fetch(`/api/users/${randomId}`);
-      const duration = (performance.now() - startTime).toFixed(1);
-      const data = await response.json();
-
-      responseStatus.textContent = `${response.status} ${response.statusText}`;
-      responseStatus.className = 'badge';
-      if (response.status >= 200 && response.status < 300) {
-        responseStatus.classList.add('success-badge');
-      } else {
-        responseStatus.classList.add('danger-badge');
-      }
-      responseStatus.style.display = 'inline-block';
-
-      responseBox.textContent = [
-        `// Path matched: /api/users/:id`,
-        `// RTT latency: ${duration}ms`,
-        JSON.stringify(data, null, 2)
-      ].join('\n\n');
-
-    } catch (err) {
-      responseStatus.textContent = 'ERROR';
-      responseStatus.className = 'badge danger-badge';
-      responseStatus.style.display = 'inline-block';
-      responseBox.textContent = `Failed to contact server:\n${err.message}`;
     }
   });
 });

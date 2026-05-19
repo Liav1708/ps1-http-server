@@ -28,7 +28,7 @@ app.use((req, res, next) => {
 app.get('/api/users/:id', (req, res) => {
   const userId = req.params.id;
   
-  res.json({
+  const payload = {
     success: true,
     source: 'Dynamic Route Params Handler',
     user: {
@@ -38,7 +38,19 @@ app.get('/api/users/:id', (req, res) => {
       joined: new Date(Date.now() - 1000 * 60 * 60 * 24 * Number(userId)).toLocaleDateString(),
       score: Math.floor(Math.random() * 1000) + 100
     }
-  });
+  };
+
+  // Content negotiation: serve a gorgeous HTML dashboard page for browser navigation,
+  // or return raw JSON for programmatic client fetches.
+  const acceptHeader = req.headers['accept'] || '';
+  if (acceptHeader.includes('text/html')) {
+    const { getApiVisualizerPage } = require('./lib/apiVisualizerPage');
+    const html = getApiVisualizerPage(req.path, req.method, payload, req.headers);
+    res.set('Content-Type', 'text/html');
+    res.send(html);
+  } else {
+    res.json(payload);
+  }
 });
 
 // POST Endpoint with CREATIVE FEATURE: Built-in body validation middleware!

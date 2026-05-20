@@ -47,9 +47,11 @@
           <li><strong>TCP Socket Accumulator</strong> - Intelligently buffers chunked HTTP requests, parsing headers and
             waiting for complete body payload delivery.</li>
           <li><strong>Regex Route Router</strong> - Full routing support with params matching (e.g.
-            <code>/api/users/:id</code>) and HTTP verbs.</li>
+            <code>/api/users/:id</code>) and HTTP verbs.
+          </li>
           <li><strong>Express-Style Middleware Piping</strong> - Executes serial middleware chains with full
-            <code>(req, res, next)</code> signature control.</li>
+            <code>(req, res, next)</code> signature control.
+          </li>
           <li><strong>Pulse Template Engine</strong> - Custom templating engine supporting list loops
             (<code>#each</code>), conditionals (<code>#if</code>), and value bindings.</li>
           <li><strong>Declarative Validator</strong> - Built-in type coercion and validation middleware.</li>
@@ -58,10 +60,12 @@
         <div style="margin-top: 32px;">
           <h3 style="font-size: 1rem; margin-bottom: 8px;">Run Client-Side Action Controls:</h3>
           <div style="display: flex; flex-wrap: wrap; gap: 12px;">
-            <a href="/profile?username=LiavSarfati&role=student" target="_blank" class="btn" style="text-decoration: none;">
+            <a href="/profile?username=LiavSarfati&role=student" target="_blank" class="btn"
+              style="text-decoration: none;">
               🎭 Try Template View
             </a>
-            <a href="/api/users/99" target="_blank" class="btn btn-secondary" style="text-decoration: none;" id="btn-fetch-user">
+            <a href="/api/users/99" target="_blank" class="btn btn-secondary" style="text-decoration: none;"
+              id="btn-fetch-user">
               🔍 Test Route Params
             </a>
             <a href="/trigger-error" target="_blank" class="btn btn-danger" style="text-decoration: none;">
@@ -99,7 +103,7 @@
 
           <div class="form-group">
             <label for="input-age">Age (Validated Number)</label>
-            <input type="text" id="input-age" placeholder="22" required>
+            <input type="text" id="input-age" placeholder="25" required>
           </div>
 
           <button type="submit" id="submit-btn" style="width: 100%;">
